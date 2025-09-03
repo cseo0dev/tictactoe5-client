@@ -5,15 +5,19 @@ public class ConfirmPanelController : PanelController
 {
     [SerializeField] private TMP_Text messageText;
 
-    public void Show(string message)
+    public delegate void OnConfirmButtonClicked();
+    private OnConfirmButtonClicked _onConfirmButtonClicked;
+
+    public void Show(string message, OnConfirmButtonClicked onConfirmButtonClicked)
     {
         messageText.text = message;
+        _onConfirmButtonClicked = onConfirmButtonClicked;
         base.Show();
     }
 
     public void OnClickConfirmButton()
     {
-        Hide();
+        Hide(() => _onConfirmButtonClicked());
     }
 
     public void OnClickCloseButton()
