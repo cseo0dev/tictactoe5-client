@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject confirmPanel;
+    [SerializeField] private GameObject signinPanel;
 
     // Main Scene에서 선택한 게임 타입
     private Constants.GameType _gameType;
@@ -17,27 +18,25 @@ public class GameManager : Singleton<GameManager>
     // Game 씬의 UI를 담당하는 객체
     private GameUIController _gameUIController;
 
-    /// <summary>
-    /// Main에서 Game Scene으로 전환시 호출될 메서드
-    /// </summary>
+    private void Start()
+    {
+        OpenSigninPanel();
+    }
+
+    // Main에서 Game Scene으로 전환시 호출될 메서드
     public void ChangeToGameScene(Constants.GameType gameType)
     {
         _gameType = gameType;
         SceneManager.LoadScene("Game");
     }
 
-    /// <summary>
-    /// Game에서 Main Scene으로 전환시 호출될 메서드
-    /// </summary>
+    // Game에서 Main Scene으로 전환시 호출될 메서드
     public void ChangeToMainScene()
     {
         SceneManager.LoadScene("Main");
     }
 
-    /// <summary>
-    /// Confirm Panel을 띄우는 메서드
-    /// </summary>
-    /// <param name="message"></param>
+    // Confirm Panel을 띄우는 메서드
     public void OpenConfirmPanel(string message,
         ConfirmPanelController.OnConfirmButtonClicked onConfirmButtonClicked)
     {
@@ -49,10 +48,17 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// Game Scene에서 턴을 표시하는 UI를 제어하는 함수
-    /// </summary>
-    /// <param name="gameTurnPanelType">표시할 Turn 정보</param>
+    // Signin Panel을 띄우는 메서드
+    public void OpenSigninPanel()
+    {
+        if (_canvas != null)
+        {
+            var signinPanelObject = Instantiate(signinPanel, _canvas.transform);
+            signinPanelObject.GetComponent<SigninPanelController>().Show();
+        }
+    }
+
+    // Game Scene에서 턴을 표시하는 UI를 제어하는 함수
     public void SetGameTurnPanel(GameUIController.GameTurnPanelType gameTurnPanelType)
     {
         _gameUIController.SetGameTurnPanel(gameTurnPanelType);
