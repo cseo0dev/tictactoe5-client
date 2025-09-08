@@ -5,6 +5,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject confirmPanel;
     [SerializeField] private GameObject signinPanel;
+    [SerializeField] private GameObject signupPanel;
 
     // Main Scene에서 선택한 게임 타입
     private Constants.GameType _gameType;
@@ -55,6 +56,15 @@ public class GameManager : Singleton<GameManager>
         {
             var signinPanelObject = Instantiate(signinPanel, _canvas.transform);
             signinPanelObject.GetComponent<SigninPanelController>().Show();
+        }
+    }
+
+    public void OpenSignupPanel()
+    {
+        if (_canvas != null)
+        {
+            var signupPanelObject = Instantiate(signupPanel, _canvas.transform);
+            signupPanelObject.GetComponent<SignupPanelController>().Show();
         }
     }
 

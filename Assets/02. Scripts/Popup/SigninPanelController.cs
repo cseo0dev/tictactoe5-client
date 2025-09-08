@@ -44,16 +44,23 @@ public class SigninPanelController : PanelController
                 {
                     GameManager.Instance.OpenConfirmPanel("유저 이름이 유효하지 않습니다.", () =>
                     {
-                        // TODO : ??
+                        usernameInputField.text = "";
+                        passwordInputField.text = "";
                     });
                 }
                 else if (result == 1)
                 {
                     GameManager.Instance.OpenConfirmPanel("패스워드가 유효하지 않습니다.", () =>
                     {
-                        // TODO : ??
+                        usernameInputField.text = "";
+                        passwordInputField.text = "";
                     });
                 }
             }));
+    }
+
+    public void OnClickJoinButton()
+    {
+        GameManager.Instance.OpenSignupPanel();
     }
 }

@@ -280,6 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   confirmPanel: {fileID: 2432787038844582630, guid: 4957f04168d3a7e42909b5fcd9baca8b, type: 3}
   signinPanel: {fileID: 2432787038844582630, guid: 65d29f72bf597a841b74add340411115, type: 3}
+  signupPanel: {fileID: 2432787038844582630, guid: b1bbaf7eb9abff243b07634d75ef9d5d, type: 3}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
