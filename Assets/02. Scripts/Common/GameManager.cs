@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
     // Game에서 Main Scene으로 전환시 호출될 메서드
     public void ChangeToMainScene()
     {
+        _gameLogic?.Dispose();
+        _gameLogic = null;
         SceneManager.LoadScene("Main");
     }
 
@@ -95,7 +97,17 @@ public class GameManager : Singleton<GameManager>
             }
 
             // GameLogic 생성
+            if (_gameLogic != null) _gameLogic.Dispose();
             _gameLogic = new GameLogic(blockController, _gameType);
+        }
+    }
+
+    private void OnApplicationQuit() // 앱 종료 직전 호출되는 함수 (강제종료시 작동 x)
+    {
+        if (_gameLogic != null)
+        {
+            _gameLogic?.Dispose();
+            _gameLogic = null;
         }
     }
 }
