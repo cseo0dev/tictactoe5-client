@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AIState : BasePlayerState
 {
-    public override void OnEnter(GameLogic gameLogic)
+    public override async void OnEnter(GameLogic gameLogic)
     {
         // 턴 표시
         GameManager.Instance.SetGameTurnPanel(GameUIController.GameTurnPanelType.BTurn);
@@ -11,7 +11,9 @@ public class AIState : BasePlayerState
         var board = gameLogic.GetBoard();
 
         // AI 연산
-        var result = TicTacToeAI.GetBestMove(board);
+        // var result = TicTacToeAI.GetBestMove(board);
+        var result = await OmokAI.GetBestMove(board);
+
         if (result.HasValue)
         {
             HandleMove(gameLogic, result.Value.row, result.Value.col);

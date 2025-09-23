@@ -129,9 +129,9 @@ public class GameLogic : IDisposable
     // 게임의 결과 확인
     public GameResult CheckGameResult()
     {
-        if (TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerA, _board)) { return GameResult.Win; }
-        if (TicTacToeAI.CheckGameWin(Constants.PlayerType.PlayerB, _board)) { return GameResult.Lose; }
-        if (TicTacToeAI.CheckGameDraw(_board)) { return GameResult.Draw; }
+        if (OmokAI.CheckGameWin(Constants.PlayerType.PlayerA, _board)) { return GameResult.Win; }
+        if (OmokAI.CheckGameWin(Constants.PlayerType.PlayerB, _board)) { return GameResult.Lose; }
+        if (OmokAI.CheckGameDraw(_board)) { return GameResult.Draw; }
         return GameResult.None;
     }
 
